@@ -5,8 +5,8 @@
 echo "setting up base directories and files"
 mkdir -p   /etc/local/.farm /var/cache/farm
 
-touch      /etc/local/.farm/cisco.hosts /etc/local/.farm/mikrotik.hosts
-chmod 0600 /etc/local/.farm/cisco.hosts /etc/local/.farm/mikrotik.hosts
+touch      /etc/local/.farm/cisco.hosts /etc/local/.farm/mikrotik.hosts /etc/local/.farm/usg.hosts
+chmod 0600 /etc/local/.farm/cisco.hosts /etc/local/.farm/mikrotik.hosts /etc/local/.farm/usg.hosts
 chmod 0700 /etc/local/.farm
 
 chmod 0710 /var/cache/farm

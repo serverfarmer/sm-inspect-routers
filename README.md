@@ -1,6 +1,10 @@
 ### Overview
 
-`sf-inspect-routers` extension provides tools for inspecting Cisco IOS and MikroTik RouterOS devices configuration.
+`sf-inspect-routers` extension provides tools for inspecting device configuration of devices:
+
+- Cisco IOS
+- MikroTik RouterOS
+- Ubiquiti UniFi Security Gateway
 
 #### Setting up passwordless ssh authentication on router
 
@@ -34,3 +38,11 @@ Then log in to your router using ssh (authenticating with password for the last 
 ssh -p 10022 admin@router.yourdomain.com
 [admin@router] > user ssh-keys import public-key-file=id_backup_mikrotik.pub user=admin
 ```
+
+##### Ubiquiti UniFi Security Gateway:
+
+Go to Settings page in UniFi control panel, Device Authentication section in the default tab:
+
+- enable ssh access
+- change user name to "admin" (default is probably "Admin")
+- add your ssh RSA public key

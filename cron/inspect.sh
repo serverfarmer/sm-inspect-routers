@@ -47,3 +47,25 @@ for router in `cat /etc/local/.farm/cisco.hosts |grep -v ^#`; do
 		|/opt/farm/ext/versioning/save.sh daily 20 /var/cache/farm cisco-$host.tech
 
 done
+
+
+sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh usg`
+for router in `cat /etc/local/.farm/usg.hosts |grep -v ^#`; do
+
+	if [[ $router =~ ^[a-z0-9.-]+$ ]]; then
+		router="$router::"
+	elif [[ $router =~ ^[a-z0-9.-]+[:][0-9]+$ ]]; then
+		router="$router:"
+	fi
+
+	host=$(echo $router |cut -d: -f1)
+	port=$(echo $router |cut -d: -f2)
+
+	if [ "$port" = "" ]; then
+		port=22
+	fi
+
+	ssh -y -i $sshkey -p $port -o StrictHostKeyChecking=no admin@$host "mca-ctrl -t dump-cfg" \
+		|/opt/farm/ext/versioning/save.sh daily 20 /var/cache/farm usg-$host.json
+
+done
