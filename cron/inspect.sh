@@ -1,21 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 # http://fajne.it/automatyzacja-backupu-routera-mikrotik.html
 sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh mikrotik`
 for router in `cat /etc/local/.farm/mikrotik.hosts |grep -v ^#`; do
 
-	if [[ $router =~ ^[a-z0-9.-]+$ ]]; then
-		router="$router::"
-	elif [[ $router =~ ^[a-z0-9.-]+[:][0-9]+$ ]]; then
-		router="$router:"
-	fi
-
-	host=$(echo $router |cut -d: -f1)
-	port=$(echo $router |cut -d: -f2)
-
-	if [ "$port" = "" ]; then
-		port=22
-	fi
+	host=`/opt/farm/ext/farm-manager/internal/decode.sh host $router`
+	port=`/opt/farm/ext/farm-manager/internal/decode.sh port $router`
 
 	ssh -y -i $sshkey -p $port -o StrictHostKeyChecking=no admin@$host export \
 		|/opt/farm/ext/versioning/save.sh daily 20 /var/cache/farm mikrotik-$host.config
@@ -27,18 +17,8 @@ done
 sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh cisco`
 for router in `cat /etc/local/.farm/cisco.hosts |grep -v ^#`; do
 
-	if [[ $router =~ ^[a-z0-9.-]+$ ]]; then
-		router="$router::"
-	elif [[ $router =~ ^[a-z0-9.-]+[:][0-9]+$ ]]; then
-		router="$router:"
-	fi
-
-	host=$(echo $router |cut -d: -f1)
-	port=$(echo $router |cut -d: -f2)
-
-	if [ "$port" = "" ]; then
-		port=22
-	fi
+	host=`/opt/farm/ext/farm-manager/internal/decode.sh host $router`
+	port=`/opt/farm/ext/farm-manager/internal/decode.sh port $router`
 
 	ssh -y -i $sshkey -p $port -o StrictHostKeyChecking=no admin@$host "show running-config" \
 		|/opt/farm/ext/versioning/save.sh daily 20 /var/cache/farm cisco-$host.config
@@ -52,18 +32,8 @@ done
 sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh usg`
 for router in `cat /etc/local/.farm/usg.hosts |grep -v ^#`; do
 
-	if [[ $router =~ ^[a-z0-9.-]+$ ]]; then
-		router="$router::"
-	elif [[ $router =~ ^[a-z0-9.-]+[:][0-9]+$ ]]; then
-		router="$router:"
-	fi
-
-	host=$(echo $router |cut -d: -f1)
-	port=$(echo $router |cut -d: -f2)
-
-	if [ "$port" = "" ]; then
-		port=22
-	fi
+	host=`/opt/farm/ext/farm-manager/internal/decode.sh host $router`
+	port=`/opt/farm/ext/farm-manager/internal/decode.sh port $router`
 
 	ssh -y -i $sshkey -p $port -o StrictHostKeyChecking=no admin@$host "mca-ctrl -t dump-cfg" \
 		|/opt/farm/ext/versioning/save.sh daily 20 /var/cache/farm usg-$host.json
