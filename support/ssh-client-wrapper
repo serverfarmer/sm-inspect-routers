@@ -1,0 +1,15 @@
+#!/bin/sh
+. /opt/farm/scripts/init
+
+# On systems with OpenSSH 7+, use provided older OpenSSH 6.7, since
+# version 7 deprecated several old algorithms, that are still
+# in use by various routers and other network equipment.
+
+
+if [ "$OSVER" = "debian-buster" ]; then
+	arch=`/opt/farm/ext/system/detect-architecture.sh`
+	path=/opt/farm/ext/inspect-routers/support/ssh_debian_6.7p1-5+deb8u8/$arch
+	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$path/lib  "$path/ssh" "$@"
+else
+	ssh "$@"
+fi
