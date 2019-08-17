@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SSH=/opt/farm/ext/inspect-routers/support/ssh-client-wrapper
+SSH=/opt/farm/ext/binary-ssh-client/wrapper/ssh
 
 
 # http://fajne.it/automatyzacja-backupu-routera-mikrotik.html
