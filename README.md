@@ -1,6 +1,6 @@
 ### Overview
 
-`sf-inspect-routers` extension provides tools for inspecting device configuration of devices:
+`sm-inspect-routers` management extension provides tools for inspecting device configuration of devices:
 
 - Cisco IOS
 - MikroTik RouterOS
