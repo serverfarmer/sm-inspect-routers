@@ -1,7 +1,7 @@
 #!/bin/sh
 
 /opt/farm/scripts/setup/extension.sh sf-versioning
-/opt/farm/scripts/setup/extension.sh sf-farm-manager
+/opt/farm/scripts/setup/extension.sh sm-farm-manager
 /opt/farm/scripts/setup/extension.sh sf-binary-ssh-client
 
 echo "setting up base directories and files"
