@@ -5,7 +5,7 @@ SSH=/opt/farm/ext/binary-ssh-client/wrapper/ssh
 
 # http://fajne.it/automatyzacja-backupu-routera-mikrotik.html
 sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh mikrotik`
-for router in `cat /etc/local/.farm/mikrotik.hosts |grep -v ^#`; do
+for router in `cat ~/.farm/mikrotik.hosts |grep -v ^#`; do
 
 	host=`/opt/farm/mgr/farm-manager/internal/decode.sh host $router`
 	port=`/opt/farm/mgr/farm-manager/internal/decode.sh port $router`
@@ -18,7 +18,7 @@ done
 
 # https://supportforums.cisco.com/document/110946/ssh-using-public-key-authentication-ios-and-big-outputs
 sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh cisco`
-for router in `cat /etc/local/.farm/cisco.hosts |grep -v ^#`; do
+for router in `cat ~/.farm/cisco.hosts |grep -v ^#`; do
 
 	host=`/opt/farm/mgr/farm-manager/internal/decode.sh host $router`
 	port=`/opt/farm/mgr/farm-manager/internal/decode.sh port $router`
@@ -33,7 +33,7 @@ done
 
 
 sshkey=`/opt/farm/ext/keys/get-ssh-device-key.sh usg`
-for router in `cat /etc/local/.farm/usg.hosts |grep -v ^#`; do
+for router in `cat ~/.farm/usg.hosts |grep -v ^#`; do
 
 	host=`/opt/farm/mgr/farm-manager/internal/decode.sh host $router`
 	port=`/opt/farm/mgr/farm-manager/internal/decode.sh port $router`

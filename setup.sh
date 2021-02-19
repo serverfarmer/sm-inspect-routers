@@ -5,11 +5,11 @@
 /opt/farm/scripts/setup/extension.sh sf-binary-ssh-client
 
 echo "setting up base directories and files"
-mkdir -p   /etc/local/.farm /var/cache/farm
+mkdir -p   ~/.farm /var/cache/farm
 
-touch      /etc/local/.farm/cisco.hosts /etc/local/.farm/mikrotik.hosts /etc/local/.farm/usg.hosts
-chmod 0600 /etc/local/.farm/cisco.hosts /etc/local/.farm/mikrotik.hosts /etc/local/.farm/usg.hosts
-chmod 0700 /etc/local/.farm
+touch      ~/.farm/cisco.hosts ~/.farm/mikrotik.hosts ~/.farm/usg.hosts
+chmod 0600 ~/.farm/cisco.hosts ~/.farm/mikrotik.hosts ~/.farm/usg.hosts
+chmod 0700 ~/.farm
 
 chmod 0710 /var/cache/farm
 chown root:www-data /var/cache/farm
