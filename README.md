@@ -19,17 +19,17 @@ http://fajne.it/automatyzacja-backupu-routera-mikrotik.html - in polish language
 First, you need to generate ssh DSA (not RSA) key pair and install public key on all routers you plan to connect to.
 
 ```
-ssh-keygen -t dsa -f ~/.ssh/id_device_mikrotik
+ssh-keygen -t dsa -f ~/.serverfarmer/ssh/id_device_mikrotik
 ```
 
 Now, you have 2 files:
 
-`~/.ssh/id_device_mikrotik` is the private key, and you should protect it before any unauthorized access
+`~/.serverfarmer/ssh/id_device_mikrotik` is the private key, and you should protect it before any unauthorized access
 
-`~/.ssh/id_device_mikrotik.pub` is the public key, and you should install it on your routers:
+`~/.serverfarmer/ssh/id_device_mikrotik.pub` is the public key, and you should install it on your routers:
 
 ```
-scp -P 10022 ~/.ssh/id_device_mikrotik.pub admin@router.yourdomain.com:
+scp -P 10022 ~/.serverfarmer/ssh/id_device_mikrotik.pub admin@router.yourdomain.com:
 ```
 
 Then log in to your router using ssh (authenticating with password for the last time), and import the key to your user:
